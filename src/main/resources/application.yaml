@@ -1,0 +1,13 @@
+server:
+  port: 8090
+
+spring:
+  datasource:
+    url: jdbc:h2:file:./data/h2/slcs-db;DB_CLOSE_ON_EXIT=TRUE
+    username: mrip1x
+    password: mrip1x
+
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
