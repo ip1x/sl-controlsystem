@@ -11,3 +11,6 @@ spring:
     show-sql: false
     hibernate:
       ddl-auto: update
+
+#  thymeleaf:
+#    mode: LEGACYHTML5
