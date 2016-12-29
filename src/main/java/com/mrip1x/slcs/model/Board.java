@@ -3,8 +3,7 @@ package com.mrip1x.slcs.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Board {
@@ -23,8 +22,8 @@ public class Board {
     @Column
     private Date modifyDate;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "board")
-    private Set<Card> cards;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "board", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE})
+    private List<Card> cards = new ArrayList<>();
 
     public Board() {
     }
@@ -61,12 +60,21 @@ public class Board {
         this.modifyDate = modifyDate;
     }
 
-    public Set<Card> getCards() {
+    public List<Card> getCards() {
         return cards;
     }
 
-    public void setCards(Set<Card> cards) {
+    public void setCards(List<Card> cards) {
+        cards.forEach(c -> c.setBoard(this));
         this.cards = cards;
+    }
+
+    public boolean addCard(Card card) {
+        if (card == null) {
+            return false;
+        }
+        card.setBoard(this);
+        return this.cards.add(card);
     }
 
     @Override

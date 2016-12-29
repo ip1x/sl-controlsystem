@@ -25,7 +25,7 @@ public class Card {
     @Column
     private Date modifyDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private Board board;
 
     public Card() {
