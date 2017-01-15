@@ -3,7 +3,6 @@ package com.mrip1x.slcs.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.security.acl.Owner;
 import java.util.Date;
 
 @Entity
@@ -20,10 +19,7 @@ public class Channel {
     @Column
     private String description;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "createdChannels", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE})
-    private Owner owner;
-
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "channel", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToOne(mappedBy = "channel", cascade = CascadeType.ALL)
     private Board board;
 
     @Column
@@ -59,14 +55,6 @@ public class Channel {
         this.description = description;
     }
 
-    public Owner getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Owner owner) {
-        this.owner = owner;
-    }
-
     public Board getBoard() {
         return board;
     }
@@ -99,14 +87,25 @@ public class Channel {
         Channel channel = (Channel) o;
 
         if (!id.equals(channel.id)) return false;
-        if (name != null ? !name.equals(channel.name) : channel.name != null) return false;
-        return owner != null ? owner.equals(channel.owner) : channel.owner == null;
+        return name != null ? name.equals(channel.name) : channel.name == null;
     }
 
     @Override
     public int hashCode() {
         int result = id.hashCode();
-        result = 31 * result + (owner != null ? owner.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Channel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", board=" + board +
+                ", createDate=" + createDate +
+                ", modifyDate=" + modifyDate +
+                '}';
     }
 }

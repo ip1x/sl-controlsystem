@@ -29,7 +29,7 @@ public class Sticker {
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private Card card;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "stickers", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToMany(targetEntity = com.mrip1x.slcs.model.User.class, fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE})
     private List<User> users;
 
     public Sticker() {

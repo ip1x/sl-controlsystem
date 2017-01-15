@@ -31,11 +31,9 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToMany(targetEntity = com.mrip1x.slcs.model.Sticker.class, fetch = FetchType.LAZY, mappedBy = "users", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Sticker> stickers;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
-    private List<Channel> createdChannels;
 
     public User() {
     }
@@ -103,16 +101,6 @@ public class User {
     public void setStickers(List<Sticker> stickers) {
         this.stickers = stickers;
     }
-
-    public List<Channel> getCreatedChannels() {
-        return createdChannels;
-    }
-
-    public void setCreatedChannels(List<Channel> createdChannels) {
-        this.createdChannels = createdChannels;
-    }
-
-
 
     @Override
     public boolean equals(Object o) {
