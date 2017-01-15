@@ -3,7 +3,9 @@ package com.mrip1x.slcs.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Board {
@@ -24,6 +26,10 @@ public class Board {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "board", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Card> cards = new ArrayList<>();
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "board", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE})
+    private Channel channel;
+
 
     public Board() {
     }
@@ -75,6 +81,14 @@ public class Board {
         }
         card.setBoard(this);
         return this.cards.add(card);
+    }
+
+    public Channel getChannel() {
+        return channel;
+    }
+
+    public void setChannel(Channel channel) {
+        this.channel = channel;
     }
 
     @Override

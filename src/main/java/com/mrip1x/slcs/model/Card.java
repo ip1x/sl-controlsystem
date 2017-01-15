@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Card {
@@ -27,6 +28,9 @@ public class Card {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private Board board;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "card", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE})
+    private List<Sticker> stickers;
 
     public Card() {
     }
@@ -77,6 +81,14 @@ public class Card {
 
     public void setBoard(Board board) {
         this.board = board;
+    }
+
+    public List<Sticker> getStickers() {
+        return stickers;
+    }
+
+    public void setStickers(List<Sticker> stickers) {
+        this.stickers = stickers;
     }
 
     @Override
