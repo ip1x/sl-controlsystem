@@ -12,7 +12,7 @@
     <script src="/node_modules/sortablejs/Sortable.min.js" th-href="@{/node_modules/sortablejs/Sortable.min.js}"/>
 </head>
 <body>
-<div class="board ui inverted segment">
+<div class="board ui inverted segment" th:id="${board.id}">
     <div class="board-head ui red header">
         <div class="ui breadcrumb">
             <i class="ui right angle icon"/>
@@ -22,11 +22,11 @@
     <div class="ui divider"/>
     <div class="board-body">
         <div id="boardCards" class="ui four column doubling stackable grid container">
-            <div class="column">
+            <div class="column" th:each="card : ${board.cards}" th:id="${card.id}">
                 <div class="ui card">
                     <div class="ui inverted content">
-                        <div class="header">Cute Dog 1</div>
-                        <div class="meta card-update-date">Last update: today</div>
+                        <div class="header" th:text="${card.name}">No name</div>
+                        <div class="meta card-update-date" th:text="${card.modifyDate}">No updates</div>
                         <div class="ui segments inverted stickers">
                             <div class="ui red segment sticker">
                                 <div class="sticker-title">Task 1</div>
@@ -41,99 +41,7 @@
                                 <div class="assignees">Assignees</div>
                             </div>
                         </div>
-                        <div class="meta card-create-date">Create date: 18.12.2016</div>
-                    </div>
-                </div>
-            </div>
-            <div class="column">
-                <div class="ui card">
-                    <div class="content">
-                        <div class="header">Cute Dog 2</div>
-                        <div class="meta card-update-date">Last update: yesterday</div>
-                        <div class="ui segments inverted stickers">
-                            <div class="ui red segment sticker">
-                                <div class="sticker-title">Task 3</div>
-                                <div class="status">In progress</div>
-                                <div class="labels">Labels</div>
-                                <div class="assignees">Assignees</div>
-                            </div>
-                            <div class="ui red segment sticker">
-                                <div class="sticker-title">Task 4</div>
-                                <div class="status">Finished yesterday</div>
-                                <div class="labels">Labels</div>
-                                <div class="assignees">Assignees</div>
-                            </div>
-                        </div>
-                        <div class="meta card-create-date">Create date: 19.12.2016</div>
-                    </div>
-                </div>
-            </div>
-            <div class="column">
-                <div class="ui card">
-                    <div class="content">
-                        <div class="header">Cute Dog 3</div>
-                        <div class="meta card-update-date">Last update: yesterday</div>
-                        <div class="ui segments inverted stickers">
-                            <div class="ui red segment sticker">
-                                <div class="sticker-title">Task 5</div>
-                                <div class="status">In progress</div>
-                                <div class="labels">Labels</div>
-                                <div class="assignees">Assignees</div>
-                            </div>
-                            <div class="ui red segment sticker">
-                                <div class="sticker-title">Task 6</div>
-                                <div class="status">Finished yesterday</div>
-                                <div class="labels">Labels</div>
-                                <div class="assignees">Assignees</div>
-                            </div>
-                        </div>
-                        <div class="meta card-create-date">Create date: 19.12.2016</div>
-                    </div>
-                </div>
-            </div>
-            <div class="column">
-                <div class="ui card">
-                    <div class="content">
-                        <div class="header">Cute Dog 4</div>
-                        <div class="meta card-update-date">Last update: yesterday</div>
-                        <div class="ui segments inverted stickers">
-                            <div class="ui red segment sticker">
-                                <div class="sticker-title">Task 7</div>
-                                <div class="status">In progress</div>
-                                <div class="labels">Labels</div>
-                                <div class="assignees">Assignees</div>
-                            </div>
-                            <div class="ui red segment sticker">
-                                <div class="sticker-title">Task 8</div>
-                                <div class="status">Finished yesterday</div>
-                                <div class="labels">Labels</div>
-                                <div class="assignees">Assignees</div>
-                            </div>
-                        </div>
-                        <div class="meta card-create-date">Create date: 19.12.2016</div>
-                    </div>
-                </div>
-            </div>
-            <div class="column">
-                <div class="ui card">
-                    <div class="content">
-                        <div class="header">Cute Dog 5</div>
-                        <div class="meta card-update-date">Last update: yesterday</div>
-                        <div class="ui segments inverted stickers">
-                            <div class="ui red segment sticker">
-                                <div class="sticker-title">Task 9</div>
-                                <div class="status">In progress</div>
-                                <div class="labels">Labels</div>
-                                <div class="assignees">Assignees</div>
-                            </div>
-                            <div class="ui red segment sticker">
-                                <div class="sticker-title">Task 10</div>
-                                <div class="status">Finished yesterday</div>
-                                <div class="labels">Labels</div>
-                                <div class="assignees">Assignees</div>
-                            </div>
-                        </div>
-                        <div class="meta card-create-date">Create date: 19.12.2016</div>
+                        <div class="meta card-create-date" th:text="${card.createDate}">Create date: unknown</div>
                     </div>
                 </div>
             </div>

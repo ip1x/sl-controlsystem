@@ -26,10 +26,10 @@ public class Card {
     @Column
     private Date modifyDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.LAZY)
     private Board board;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "card", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "card", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE})
     private List<Sticker> stickers;
 
     public Card() {

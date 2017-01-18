@@ -2,6 +2,7 @@ package com.mrip1x.slcs.controller;
 
 import com.mrip1x.slcs.model.Board;
 import com.mrip1x.slcs.model.Card;
+import com.mrip1x.slcs.model.Sticker;
 import com.mrip1x.slcs.model.User;
 import com.mrip1x.slcs.service.BoardService;
 import com.mrip1x.slcs.service.CardService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class HelloController {
@@ -56,6 +58,14 @@ public class HelloController {
         board.addCard(card);
         card = new Card();
         card.setName("card 2");
+        card.setBoard(board);
+        board.addCard(card);
+        card = new Card();
+        card.setName("card 3");
+        card.setBoard(board);
+        board.addCard(card);
+        card = new Card();
+        card.setName("card 4");
         card.setBoard(board);
         board.addCard(card);
         board = boardService.save(board);

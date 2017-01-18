@@ -24,13 +24,12 @@ public class Board {
     @Column
     private Date modifyDate;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "board", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "board", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Card> cards = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private Channel channel;
-
 
     public Board() {
     }
