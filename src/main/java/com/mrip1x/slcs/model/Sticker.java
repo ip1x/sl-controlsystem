@@ -3,6 +3,7 @@ package com.mrip1x.slcs.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,11 +27,11 @@ public class Sticker {
     @Column
     private Date modifyDate;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
     private Card card;
 
-    @ManyToMany(targetEntity = com.mrip1x.slcs.model.User.class, fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE})
-    private List<User> users;
+    @ManyToMany(targetEntity = com.mrip1x.slcs.model.User.class, fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
+    private List<User> users = new ArrayList<>();
 
     public Sticker() {
     }

@@ -3,6 +3,7 @@ package com.mrip1x.slcs.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,9 +32,13 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    @ManyToMany(targetEntity = com.mrip1x.slcs.model.Sticker.class, fetch = FetchType.LAZY, mappedBy = "users", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE})
-    private List<Sticker> stickers;
+    @ManyToMany(targetEntity = com.mrip1x.slcs.model.Sticker.class, fetch = FetchType.LAZY, mappedBy = "users", cascade = {CascadeType.PERSIST})
+    private List<Sticker> stickers = new ArrayList<>();
 
+    @PreRemove
+    private void preRemove(){
+        stickers.forEach(sticker -> sticker.getUsers().remove(this));
+    }
 
     public User() {
     }
