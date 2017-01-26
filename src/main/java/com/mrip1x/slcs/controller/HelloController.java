@@ -2,7 +2,6 @@ package com.mrip1x.slcs.controller;
 
 import com.mrip1x.slcs.model.Board;
 import com.mrip1x.slcs.model.Card;
-import com.mrip1x.slcs.model.Sticker;
 import com.mrip1x.slcs.model.User;
 import com.mrip1x.slcs.service.BoardService;
 import com.mrip1x.slcs.service.CardService;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Random;
 
 @Controller
 public class HelloController {
